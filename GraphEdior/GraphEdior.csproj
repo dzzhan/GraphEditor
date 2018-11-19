@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskInfo.cs" />
     <EmbeddedResource Include="GraphEdit.resx">
       <DependentUpon>GraphEdit.cs</DependentUpon>
     </EmbeddedResource>
