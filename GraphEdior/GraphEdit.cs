@@ -25,6 +25,9 @@ namespace GraphEdior
             this.m_stGraphs = this.CreateGraphics();//实例化Graphics类
             this.m_stPen = new Pen(Color.Red, 3);//实例化Pen类
             this.m_vTaskList = new List<TaskInfo>();
+            System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            statusLabel.Text = rect.ToString();
+            AutoScrollMinSize = new Size(rect.Width, rect.Height);
         }
 
         private void addDSPTaskToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,7 +42,7 @@ namespace GraphEdior
         private void GraphEdit_MouseMove(object sender, MouseEventArgs e)
         {
             m_stCurrentPoint = e.Location;
-            statusLabel.Text = m_stCurrentPoint.ToString();
+            //statusLabel.Text = m_stCurrentPoint.ToString();
         }
 
         private void GraphEdit_MouseDown(object sender, MouseEventArgs e)
