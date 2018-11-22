@@ -41,6 +41,16 @@ namespace GraphEdior
         {
             get { return m_H; }
         }
+
+        public int MaxX
+        {
+            get { return m_X + m_W; }
+        }
+
+        public int MaxY
+        {
+            get { return m_Y + m_H; }
+        }
     };
 
 }

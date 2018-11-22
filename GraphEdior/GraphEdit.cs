@@ -17,6 +17,7 @@ namespace GraphEdior
         private Graphics m_stGraphs;
         private Pen m_stPen;
         private List<TaskInfo> m_vTaskList = null;
+        private Point m_stScrollPoint;
      
         public GraphEdit()
         {
@@ -27,7 +28,7 @@ namespace GraphEdior
             this.m_vTaskList = new List<TaskInfo>();
             System.Drawing.Rectangle rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             statusLabel.Text = rect.ToString();
-            AutoScrollMinSize = new Size(rect.Width, rect.Height);
+            AutoScrollMinSize = new Size(m_stScrollPoint.X, m_stScrollPoint.Y);
         }
 
         private void addDSPTaskToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,12 +50,23 @@ namespace GraphEdior
         {
             m_stStartPoint = e.Location;
         }
+        private void GraphEdit_Scroll(object sender, System.Windows.Forms.ScrollEventArgs e)
+        {
+            if (m_vTaskList != null)
+            {
+                m_stGraphs.TranslateTransform(AutoScrollPosition.X, AutoScrollPosition.Y);
+                ShowAllTasks();
+            }
+        }
 
         private void GraphEdit_MouseUp(object sender, MouseEventArgs e)
         {
             TaskInfo taskInfo = new TaskInfo(m_stStartPoint, e.Location);
             m_vTaskList.Add(taskInfo);
             ShowTask(taskInfo);
+            m_stScrollPoint.X = Math.Max(m_stScrollPoint.X, taskInfo.MaxX + 200);
+            m_stScrollPoint.Y = Math.Max(m_stScrollPoint.Y, taskInfo.MaxY + 200);
+            AutoScrollMinSize = new Size(m_stScrollPoint.X, m_stScrollPoint.Y);
         }
 
         private void ShowTask(TaskInfo taskInfo)
@@ -64,7 +76,8 @@ namespace GraphEdior
 
         private void ShowAllTasks()
         {
-            foreach(TaskInfo taskInfo in m_vTaskList)
+            m_stGraphs.Clear(Color.White);
+            foreach (TaskInfo taskInfo in m_vTaskList)
             {
                 ShowTask(taskInfo);
             }

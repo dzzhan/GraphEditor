@@ -185,6 +185,7 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GraphEdit_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GraphEdit_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GraphEdit_MouseUp);
+            this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.GraphEdit_Scroll);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
@@ -192,11 +193,6 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        private void GraphEdit_MouseDown1(object sender, System.Windows.Forms.MouseEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion
